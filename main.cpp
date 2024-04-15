@@ -9,9 +9,7 @@ int main(int argc, char *argv[])
         cout << "Usage: " << argv[0] << " FILENAME" << endl;
         return 1;
     }
-
     vector<prob_struct> *prob = readFile(argv[1]);
-    stringstream ss;
 
     /*      PRINTING         */
     for (int i = 0; i < prob->size(); i++)

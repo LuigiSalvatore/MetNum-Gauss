@@ -47,5 +47,8 @@ run9: $(_APP)
 run10: $(_APP)
     ./$(_APP).exe ./Casos/caso10.txt
 
+test: a
+    g++ -o a gauss.cpp
+    ./a.exe
 clean: 			
     rm -f ${_DASHOES} ${_APP}
