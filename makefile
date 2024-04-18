@@ -1,6 +1,6 @@
 _APP = a
 _MAIN_NAME = main
-_DASH_O = main.o read.o 
+_DASH_O = main.o read.o logicaMat.o
 _CFLAGS = -c -std=c++11 #-DDEBUG
 
 all: $(_APP)
@@ -8,14 +8,15 @@ all: $(_APP)
 $(_APP): $(_DASH_O)
     g++ -o $(_APP).exe $(_DASH_O)
 
-main.o:		main.cpp read.cpp
+main.o:		main.cpp logicamat.h
     g++ ${_CFLAGS} main.cpp
 
-read.o: read.cpp read.h #probStruct.h
+logicaMat.o: logicaMat.cpp logicaMat.h read.h
+    g++ ${_CFLAGS} logicaMat.cpp
+
+read.o: read.cpp read.h
     g++ ${_CFLAGS} read.cpp
 
-probStruct.o: probStruct.cpp probStruct.h
-    g++ ${_CFLAGS} probStruct.cpp
 
 run1: $(_APP)
     ./$(_APP).exe ./Casos/caso1.txt

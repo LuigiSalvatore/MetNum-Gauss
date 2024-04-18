@@ -2,3 +2,6 @@
 *.exe
 .vscode
 *.o
+/caso*.txt
+out*.txt
+/makeTest
