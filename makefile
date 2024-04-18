@@ -1,6 +1,6 @@
 _APP = a
 _MAIN_NAME = main
-_DASH_O = main.o read.o probStruct.o
+_DASH_O = main.o read.o 
 _CFLAGS = -c -std=c++11 #-DDEBUG
 
 all: $(_APP)
@@ -11,7 +11,7 @@ $(_APP): $(_DASH_O)
 main.o:		main.cpp read.cpp
     g++ ${_CFLAGS} main.cpp
 
-read.o: read.cpp read.h probStruct.h
+read.o: read.cpp read.h #probStruct.h
     g++ ${_CFLAGS} read.cpp
 
 probStruct.o: probStruct.cpp probStruct.h
