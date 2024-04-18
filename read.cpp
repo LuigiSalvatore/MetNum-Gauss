@@ -19,6 +19,7 @@ std::vector<prob_struct> *readFile(std::string s)
         }
         file.close();
         sort(prob->begin(), prob->end(), compare);
+        // prob->push_back(prob_struct{"Diploma", 1, "Diploma"});
         if (!(std::istringstream(s) >> line >> line >> line >> startingPeople))
             startingPeople = -1;
     }

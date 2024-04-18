@@ -48,8 +48,17 @@ run9: $(_APP)
 run10: $(_APP)
     ./$(_APP).exe ./Casos/caso10.txt
 
-test: a
-    g++ -o a gauss.cpp
-    ./a.exe
+test: $(_APP)
+    $(_APP).exe ./Casos/caso1.txt > ./Outs/caso1.out
+    $(_APP).exe ./Casos/caso2.txt > ./Outs/caso2.out
+    $(_APP).exe ./Casos/caso3.txt > ./Outs/caso3.out
+    $(_APP).exe ./Casos/caso4.txt > ./Outs/caso4.out
+    $(_APP).exe ./Casos/caso5.txt > ./Outs/caso5.out
+    $(_APP).exe ./Casos/caso6.txt > ./Outs/caso6.out
+    $(_APP).exe ./Casos/caso7.txt > ./Outs/caso7.out
+    $(_APP).exe ./Casos/caso8.txt > ./Outs/caso8.out
+    $(_APP).exe ./Casos/caso9.txt > ./Outs/caso9.out
+    $(_APP).exe ./Casos/caso10.txt > ./Outs/caso10.out
+
 clean: 			
     rm -f ${_DASHOES} ${_APP}

@@ -1,4 +1,5 @@
 #include "logicaMat.h"
+#include <iomanip>
 
 std::vector<prob_struct> *prob;
 std::vector<std::vector<double>> *mat = new std::vector<std::vector<double>>();
@@ -16,17 +17,28 @@ void geraMatriz()
         if (i % 2 == 0)
             continue;
         else
+        {
             for (int j = 0; j < prob->size(); j++) // row
             {
                 if (i == j && i % 2) // quando as duas variáveis são iguais
                     row->push_back(prob->at(i).prob);
                 else if (i == j + 1 && i % 2)
                     row->push_back(prob->at(j).prob);
-                else
+                else if (j % 2 == 0)
                     row->push_back(0);
             }
-        mat->push_back(*row);
+            mat->push_back(*row);
+        }
     }
+    std::vector<double> *row = new std::vector<double>();
+    for (int i = 0; i < prob->size(); i++)
+    {
+        if (i % 2 == 0)
+            row->push_back(0);
+        else if (i + 1 == prob->size())
+            row->push_back(1);
+    }
+    mat->push_back(*row);
 }
 void printMat()
 {
@@ -35,7 +47,7 @@ void printMat()
     {
         for (auto j : i)
         {
-            std::cout << j << " ";
+            std::cout << std::setprecision(6) << std::fixed << j << " ";
         }
         std::cout << std::endl;
     }
