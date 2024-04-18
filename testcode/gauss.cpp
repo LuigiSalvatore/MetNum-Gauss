@@ -11,8 +11,8 @@ int main()
     // a[COLUNA][LINHA]
     float a[MAT_SIZE_][MAT_SIZE_] = {
         {22, 6, 14},
-        {13, -4, 10},
-        {18, 9, -5}}; // 3x3 matrix
+        {18, 9, -5},
+        {13, -4, 10}}; // 3x3 matrix
 
     float b[MAT_SIZE_] =
         {9, 8, 4}; // 3x1 matrix
