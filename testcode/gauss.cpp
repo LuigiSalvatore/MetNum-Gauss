@@ -1,13 +1,16 @@
 // #include "read.h"
 #include <iostream>
 #include <iomanip>
+#include <math.h>
 #define MAT_SIZE_ 3
 using namespace std;
 
 void printMatrix(const float a[MAT_SIZE_][MAT_SIZE_], const float b[MAT_SIZE_]);
+void gauss(float a[MAT_SIZE_][MAT_SIZE_], float b[MAT_SIZE_]);
 
 int main()
 {
+
     // a[COLUNA][LINHA]
     float a[MAT_SIZE_][MAT_SIZE_] = {
         {22, 6, 14},
@@ -16,20 +19,13 @@ int main()
 
     float b[MAT_SIZE_] =
         {9, 8, 4}; // 3x1 matrix
+    printMatrix(a, b);
+
+    gauss(a, b);
 
     printMatrix(a, b);
 
-    /*
-    - preciso zerar a primeira coluna da segunda linha e da terceira linha (l2 = l2 - ( l2[0] / l1[0] ) *l1)
-    */
-    for (int i = 1; i < MAT_SIZE_; i++)
-    {
-        float m = a[i][0] / a[0][0];
-        for (int j = 0; j < MAT_SIZE_; j++)
-            a[i][j] = a[i][j] - (m * a[0][j]);
-        b[i] = b[i] - (m * b[0]);
-        printMatrix(a, b);
-    }
+    return 0;
 }
 
 void printMatrix(const float a[MAT_SIZE_][MAT_SIZE_], const float b[MAT_SIZE_])
@@ -54,4 +50,53 @@ void printMatrix(const float a[MAT_SIZE_][MAT_SIZE_], const float b[MAT_SIZE_])
     ss << endl
        << endl;
     cout << ss.str();
+}
+void gauss(float a[MAT_SIZE_][MAT_SIZE_], float b[MAT_SIZE_])
+{
+    int n = MAT_SIZE_;
+
+    for (int i = 0; i < n; i++)
+    {
+        // Encontrar a linha com o maior valor absoluto na coluna i
+        int maxRow = i;
+        for (int k = i + 1; k < n; k++)
+        {
+            if (abs(a[k][i]) > abs(a[maxRow][i]))
+            {
+                maxRow = k;
+            }
+        }
+
+        // Trocar a linha máxima com a linha atual
+        for (int k = i; k < n; k++)
+        {
+            float temp = a[maxRow][k];
+            a[maxRow][k] = a[i][k];
+            a[i][k] = temp;
+        }
+        float temp = b[maxRow];
+        b[maxRow] = b[i];
+        b[i] = temp;
+
+        // Fazer todos os elementos abaixo deste um zero
+        for (int k = i + 1; k < n; k++)
+        {
+            float factor = a[k][i] / a[i][i];
+            for (int j = i; j < n; j++)
+            {
+                a[k][j] -= factor * a[i][j];
+            }
+            b[k] -= factor * b[i];
+        }
+    }
+
+    // Resolver Ax=b para uma matriz triangular superior
+    for (int i = n - 1; i >= 0; i--)
+    {
+        for (int k = i + 1; k < n; k++)
+        {
+            b[i] -= a[i][k] * b[k];
+        }
+        b[i] = b[i] / a[i][i];
+    }
 }
