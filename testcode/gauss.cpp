@@ -5,19 +5,19 @@
 #define MAT_SIZE_ 3
 using namespace std;
 
-void printMatrix(const float a[MAT_SIZE_][MAT_SIZE_], const float b[MAT_SIZE_]);
-void gauss(float a[MAT_SIZE_][MAT_SIZE_], float b[MAT_SIZE_]);
+void printMatrix(const double a[MAT_SIZE_][MAT_SIZE_], const double b[MAT_SIZE_]);
+void gauss(double a[MAT_SIZE_][MAT_SIZE_], double b[MAT_SIZE_]);
 
 int main()
 {
 
     // a[COLUNA][LINHA]
-    float a[MAT_SIZE_][MAT_SIZE_] = {
+    double a[MAT_SIZE_][MAT_SIZE_] = {
         {22, 6, 14},
         {18, 9, -5},
         {13, -4, 10}}; // 3x3 matrix
 
-    float b[MAT_SIZE_] =
+    double b[MAT_SIZE_] =
         {9, 8, 4}; // 3x1 matrix
     printMatrix(a, b);
 
@@ -28,7 +28,7 @@ int main()
     return 0;
 }
 
-void printMatrix(const float a[MAT_SIZE_][MAT_SIZE_], const float b[MAT_SIZE_])
+void printMatrix(const double a[MAT_SIZE_][MAT_SIZE_], const double b[MAT_SIZE_])
 {
     stringstream ss;
 
@@ -51,7 +51,7 @@ void printMatrix(const float a[MAT_SIZE_][MAT_SIZE_], const float b[MAT_SIZE_])
        << endl;
     cout << ss.str();
 }
-void gauss(float a[MAT_SIZE_][MAT_SIZE_], float b[MAT_SIZE_])
+void gauss(double a[MAT_SIZE_][MAT_SIZE_], double b[MAT_SIZE_])
 {
     int n = MAT_SIZE_;
 
@@ -70,18 +70,18 @@ void gauss(float a[MAT_SIZE_][MAT_SIZE_], float b[MAT_SIZE_])
         // Trocar a linha máxima com a linha atual
         for (int k = i; k < n; k++)
         {
-            float temp = a[maxRow][k];
+            double temp = a[maxRow][k];
             a[maxRow][k] = a[i][k];
             a[i][k] = temp;
         }
-        float temp = b[maxRow];
+        double temp = b[maxRow];
         b[maxRow] = b[i];
         b[i] = temp;
 
         // Fazer todos os elementos abaixo deste um zero
         for (int k = i + 1; k < n; k++)
         {
-            float factor = a[k][i] / a[i][i];
+            double factor = a[k][i] / a[i][i];
             for (int j = i; j < n; j++)
             {
                 a[k][j] -= factor * a[i][j];
