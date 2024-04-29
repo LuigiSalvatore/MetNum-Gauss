@@ -1,0 +1,5 @@
+Entrada Sem_1 : 2897
+Sem_1 -> 0.5 -> Sem_1
+Sem_1 -> 0.5 -> Sem_2
+Sem_2 -> 0.4 -> Diploma
+Sem_2 -> 0.5 -> Sem_2
