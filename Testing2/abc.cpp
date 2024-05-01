@@ -10,10 +10,11 @@
 const std::string PATH = "./Casos/";
 void read(std::string s);
 void swap(double *a, double *b);
+bool compare(std::string a, std::string b);
 
 int main()
 {
-    read(PATH + "caso1.txt");
+    read(PATH + "casob.txt");
     return 0;
 }
 
@@ -77,7 +78,9 @@ void read(std::string s)
             matrix[i / 2][i / 2] = stod(aux) - 1;
         }
         else
-            matrix[i / 2][i / 2 + 1] = stod(aux);
+        {
+            matrix[i / 2 + 1][i / 2] = stod(aux);
+        }
 #ifdef DEBUG
         std::cout << "from_var: " << from_var << " to_var: " << to_var << " aux: " << aux << std::endl;
 #endif
@@ -177,4 +180,16 @@ void swap(double *a, double *b)
         a[i] = b[i];
         b[i] = aux[i];
     }
+}
+bool compare(auto &a, auto &b)
+{
+    std::string from_var, to_var, aux, trash, from_var2, to_var2, aux2, trash2;
+    std::istringstream(a) >> from_var >> trash >> aux >> trash >> to_var;
+    std::istringstream(b) >> from_var2 >> trash2 >> aux2 >> trash2 >> to_var2;
+    if (from_var != from_var2)
+        return from_var < from_var2;
+    else if (to_var != to_var2)
+        return to_var < to_var2;
+    else
+        return aux < aux2;
 }

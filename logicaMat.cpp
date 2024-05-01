@@ -52,7 +52,6 @@ void printMat()
         std::cout << std::endl;
     }
 }
-
 void printEverything(std::string s)
 {
     geraMatriz(s);
@@ -64,7 +63,6 @@ void printEverything(std::string s)
               << std::endl;
     printMat();
 }
-
 std::vector<double> *gauss()
 {
     int n = mat->size();
