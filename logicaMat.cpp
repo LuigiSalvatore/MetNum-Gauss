@@ -4,6 +4,8 @@
 
 std::vector<prob_struct> prob;
 std::vector<std::vector<double>> mat;
+std::vector<double> resultados;
+int totalFaculdade = 0;
 
 void geraMatriz(std::string nomeArquivo, const int a)
 {
@@ -137,53 +139,19 @@ void gauss()
         }
         B[i] /= mat[i][i];
     }
-    for (auto i : B)
-        std::cout << i << std::endl;
+    resultados = B;
 }
-void gauss(int)
+void importantPrints()
 {
-
-    int n = mat.size();
-    for (int i = 0; i < n - 1; i++)
+    std::cout << "Pessoas que entraram esse semestre: " << startingPeople << std::endl;
+    for (int i = 0; i < resultados.size(); i++)
     {
-        std::cout << "i: " << i << std::endl;
-        /*
-        double maxEl = abs(mat.at(i).at(i));
-        int maxRow = i;
-        for (int k = i + 1; k < n; k++)
-        {
-            if (abs(mat.at(k).at(i)) > maxEl)
-            {
-                maxEl = abs(mat.at(k).at(i));
-                maxRow = k;
-            }
-        }
-        for (int k = i; k < n + 1; k++)
-        {
-            double tmp = mat.at(maxRow).at(k);
-            mat.at(maxRow).at(k) = mat.at(i).at(k);
-            mat.at(i).at(k) = tmp;
-        }*/
-        for (int k = i + 1; k < n; k++)
-        {
-            double c = -mat[k][i] / mat[i][i];
-            // std::cout << "n,k,i: " << n << "," << k << "," << i << std::endl;
-            for (int j = i; j < n + 1; j++)
-                if (i == j)
-                    mat[k][j] = 0;
-                else
-                    mat[k][j] += c * mat[i][j];
-        }
-        printMat();
-    } /*
-     std::vector<double> *x = new std::vector<double>(n);
-     for (int i = n - 1; i >= 0; i--)
-     {
-         x->at(i) = mat.at(i).at(n) / mat.at(i).at(i);
-         for (int k = i - 1; k >= 0; k--)
-             mat.at(k).at(n) -= mat.at(k).at(i) * x->at(i);
-     }
-     for (auto i : *x)
-         std::cout << i << std::endl;
- */
+        if (i != resultados.size() - 1)
+            std::cout << "Semestre " << i + 1 << ": " << resultados[i] << std::endl;
+        else
+            std::cout << "Diplomados: " << resultados[i] << std::endl;
+        totalFaculdade += resultados[i];
+    }
+    std::cout << "Total de pessoas na faculdade: " << totalFaculdade - resultados[resultados.size() - 1] << std::endl;
+    std::cout << "Total de pessoas na faculdade incluindo os diplomados: " << totalFaculdade << std::endl;
 }

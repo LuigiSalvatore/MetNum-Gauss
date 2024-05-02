@@ -44,14 +44,14 @@ prob_struct str2Prob(std::string line)
     if (!(iss >> x >> trash >> p >> trash >> y))
         return prob;
 
-    prob.x = x;
+    prob.x = x + ' ';
     prob.prob = p;
-    prob.y = y;
+    prob.y = y + ' ';
 
     return prob;
 }
 
-bool compare(const prob_struct prob1, const prob_struct prob2)
+bool compare1(const prob_struct prob1, const prob_struct prob2)
 {
     if (prob1.y == "Diploma")
         return false;
@@ -66,4 +66,24 @@ std::ostream &operator<<(std::ostream &os, const prob_struct &prob)
 {
     os << prob.x << " -> " << prob.prob << " -> " << prob.y;
     return os;
+}
+bool compare(const prob_struct prob1, const prob_struct prob2)
+{
+    if (prob1.y == "Diploma")
+        return false;
+    else if (prob2.y == "Diploma")
+        return true;
+    if (prob1.x != prob2.x)
+    {
+        if (prob1.x[5] == ' ' && prob2.x[5] != ' ')
+            return true;
+        else if (prob1.x[5] != ' ' && prob2.x[5] == ' ')
+            return false;
+        else if (prob1.x[5] == ' ' && prob2.x[5] == ' ')
+            return prob1.x < prob2.x;
+        else if (prob1.x[5] != ' ' && prob2.x[5] != ' ')
+            return prob1.x[4] < prob2.x[4];
+    }
+    else
+        return prob1.y < prob2.y;
 }

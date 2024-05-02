@@ -13,7 +13,6 @@ void printMat();                                   // imprime a matriz
 void printDeps();                                  // imprime as dependencias em forma de string
 void printEverything(const std::string s);         // imprime tudo, inclusive a matriz
 void gauss();                                      // resolve o sistema linear
-void gauss(int);                                   // resolve o sistema linear
-std::vector<double> gaussElim();                   // resolve o sistema linear usando a eliminação de gauss, e retorna um vetor com as variaveis
+void importantPrints();
 
 #endif // _LOGICA_MAT_H
