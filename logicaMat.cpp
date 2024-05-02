@@ -114,7 +114,7 @@ void gauss()
 {
     std::cout << std::endl;
     int n = mat.size() - 1;
-    std::vector<double> B(n, 0);
+    std::vector<double> B(n + 1, 0);
     B[0] = -startingPeople; /**/
     for (int j = 0; j <= n; j++)
     {
