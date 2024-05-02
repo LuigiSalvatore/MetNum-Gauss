@@ -1,11 +1,11 @@
 #include "read.h"
 
 int startingPeople = 0;
-std::vector<prob_struct> readFile(std::string s)
+std::vector<prob_struct> *readFile(std::string s)
 {
     std::string line;
 
-    std::vector<prob_struct> prob;
+    std::vector<prob_struct> *prob = new std::vector<prob_struct>();
     std::ifstream file(s);
     if (file.is_open())
     {
@@ -15,15 +15,13 @@ std::vector<prob_struct> readFile(std::string s)
             if (i == 0)
                 s = line;
             else
-                prob.push_back(str2Prob(line));
+                prob->push_back(str2Prob(line));
         }
         file.close();
-        sort(prob.begin(), prob.end(), compare);
-        // prob.push_back(prob_struct{"Diploma", 1, "Diploma"});
+        sort(prob->begin(), prob->end(), compare);
+        // prob->push_back(prob_struct{"Diploma", 1, "Diploma"});
         if (!(std::istringstream(s) >> line >> line >> line >> startingPeople))
             startingPeople = -1;
-        prob_struct p_aux = {"Diploma", 0, "Diploma"};
-        prob.push_back(p_aux);
     }
     else
         std::cout << "Unable to open file";

@@ -20,7 +20,7 @@ struct prob_struct
 prob_struct str2Prob(const std::string);
 std::ostream &operator<<(std::ostream &os, const prob_struct &prob);
 
-std::vector<prob_struct> readFile(const std::string);
+std::vector<prob_struct> *readFile(const std::string);
 bool compare(const prob_struct prob1, const prob_struct prob2);
 
 #endif // _READ_H

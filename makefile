@@ -1,6 +1,6 @@
 _APP = a
 _MAIN_NAME = main
-_DASH_O = main.o read.o logicaMat.o test.o
+_DASH_O = main.o read.o logicaMat.o #test.o
 _CFLAGS = -c -std=c++11 #-DDEBUG
 
 all: $(_APP)
@@ -8,7 +8,7 @@ all: $(_APP)
 $(_APP): $(_DASH_O)
 	g++ -o $(_APP).exe $(_DASH_O)
 
-main.o:		main.cpp logicamat.h test.h
+main.o:		main.cpp logicamat.h #test.h
 	g++ ${_CFLAGS} main.cpp
 
 logicaMat.o: logicaMat.cpp logicaMat.h read.h
@@ -17,11 +17,14 @@ logicaMat.o: logicaMat.cpp logicaMat.h read.h
 read.o: read.cpp read.h
 	g++ ${_CFLAGS} read.cpp
 
-test.o: test.cpp test.h
-	g++ ${_CFLAGS} test.cpp
+#test.o: test.cpp test.h
+#g++ ${_CFLAGS} test.cpp
+
+run0: $(_APP)
+	./$(_APP).exe ./Casos/caso0.txt
 
 run1: $(_APP)
-	./$(_APP).exe ./Casos/caso1.txt
+	./$(_APP).exe ./Casos/caso1.txt > ./Outs/caso1.out
 
 run2: $(_APP)
 	./$(_APP).exe ./Casos/caso2.txt
@@ -50,7 +53,11 @@ run9: $(_APP)
 run10: $(_APP)
 	./$(_APP).exe ./Casos/caso10.txt
 
+run11: $(_APP)
+	./$(_APP).exe ./Casos/casoB.txt
+
 test: $(_APP)
+#$(_APP).exe ./Casos/caso0.txt > ./Outs/caso0.out
 	$(_APP).exe ./Casos/caso1.txt > ./Outs/caso1.out
 	$(_APP).exe ./Casos/caso2.txt > ./Outs/caso2.out
 	$(_APP).exe ./Casos/caso3.txt > ./Outs/caso3.out
@@ -61,6 +68,7 @@ test: $(_APP)
 	$(_APP).exe ./Casos/caso8.txt > ./Outs/caso8.out
 	$(_APP).exe ./Casos/caso9.txt > ./Outs/caso9.out
 	$(_APP).exe ./Casos/caso10.txt > ./Outs/caso10.out
+#$(_APP).exe ./Casos/casoB.txt > ./Outs/casoB.out
 
 clean: 			
 	rm -f ${_DASHOES} ${_APP}
